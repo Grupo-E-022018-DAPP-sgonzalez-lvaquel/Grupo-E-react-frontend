@@ -6,7 +6,13 @@ import { IStore } from '../reducers/rootReducer';
 import { getSubastifyClient } from '../selectors/clients';
 
 
-export interface IAuctionsAction extends Action {
+export type IAuctionsAction = IAuctionsErrorsAction | IAuctionsModificationAction
+
+export interface IAuctionsErrorsAction extends Action {
+    error: string
+}
+
+export interface IAuctionsModificationAction extends Action {
     auctions: IAuction[],
 }
 
@@ -21,6 +27,13 @@ export const addAuctions = auctionAction.bind(undefined, actionTypes.auctions.AD
 
 export const addRecentAuctions = auctionAction.bind(undefined, actionTypes.auctions.ADD_RECENT_AUCTIONS)
 
+export function addAuctionsError(error: string) {
+    return {
+        error,
+        type: actionTypes.auctions.ADD_AUCTIONS_ERROR,
+    }
+}
+
 export function fetchAuctions() {
     return (dispatch: any, getState: () => IStore) => {
         (getSubastifyClient(getState()) as ISubastifyClient)
@@ -29,6 +42,11 @@ export function fetchAuctions() {
                 dispatch(
                     addAuctions(auctions)
                 )
+            })
+            .catch((err: any) => {
+                dispatch(
+                    addAuctionsError(`Could not fetch auctions: ${err.message}`)
+                );
             });
     }
 }
@@ -41,6 +59,11 @@ export function fetchRecentAuctions() {
                 dispatch(
                     addRecentAuctions(auctions)
                 )
+            })
+            .catch((err: any) => {
+                dispatch(
+                    addAuctionsError(`Could not fetch recent auctions: ${err.message}`)
+                );
             });
     }
 }

@@ -1,9 +1,10 @@
 import { IAuction } from 'src/model';
-import { IAuctionsAction } from '../actions/auctions';
+import { IAuctionsModificationAction } from '../actions/auctions';
 import AuctionsActionTypes from '../actionTypes/auctions';
 
 
 export interface IAuctionsReducerState {
+  errors: string[],
   allIds: number[],
   byIds: { [id: number]: IAuction },
   recentIds: number[],
@@ -12,18 +13,23 @@ export interface IAuctionsReducerState {
 const initialState: IAuctionsReducerState = {
   allIds: [],
   byIds: {},
+  errors: [],
   recentIds: [],
 };
 
-export default function (state = initialState, action: IAuctionsAction): IAuctionsReducerState {
+export default function (state = initialState, action: any): IAuctionsReducerState {
   switch (action.type) {
+    case AuctionsActionTypes.ADD_AUCTIONS_ERROR: return {
+      ...state,
+      errors: [...state.errors, action.error]
+    };
     case AuctionsActionTypes.ADD_AUCTIONS: return {
+      ...state,
       allIds: mergeValues(state.allIds, action.auctions.map(id)),
       byIds: mergeByIds(state, action),
-      recentIds: state.recentIds,
     };
     case AuctionsActionTypes.ADD_RECENT_AUCTIONS: return {
-      allIds: state.allIds,
+      ...state,
       byIds: mergeByIds(state, action),
       recentIds: mergeValues(state.recentIds, action.auctions.map(id))
     };
@@ -36,7 +42,7 @@ interface Identificable {
   id: any
 }
 
-function mergeByIds(state: IAuctionsReducerState, action: IAuctionsAction) {
+function mergeByIds(state: IAuctionsReducerState, action: IAuctionsModificationAction) {
   return { ...state.byIds, ...action.auctions.reduce(byIds, {}) };
 }
 

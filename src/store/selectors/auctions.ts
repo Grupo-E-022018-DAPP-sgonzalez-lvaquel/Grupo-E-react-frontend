@@ -1,5 +1,9 @@
 import { IStore } from '../reducers/rootReducer';
 
+export function getAuctionsErrors(state: IStore) {
+    return state.auctions.errors;
+}
+
 export function getAuctions(state: IStore) {
     return state.auctions.allIds.map(id => auctionsById(state)[id])
 }
