@@ -10,7 +10,7 @@ interface IAuctionsListItemProps extends React.Props<any> {
 function AuctionsListItem({ auction }: IAuctionsListItemProps) {
     return (
         <div>
-            auction
+            auction id: {auction.id}
         </div>
     );
 }
