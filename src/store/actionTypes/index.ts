@@ -1,5 +1,7 @@
-import * as auctions from './auctions';
+import auctions from './auctions';
+import clients from './clients';
 
 export default {
-    auctions
+    auctions,
+    clients,
 }

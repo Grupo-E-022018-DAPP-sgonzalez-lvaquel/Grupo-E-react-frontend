@@ -1,5 +1,5 @@
 import { IAuction } from 'src/model';
-import IAuctionsAction from '../actions/IAuctionsAction';
+import { IAuctionsAction } from '../actions/auctions';
 import AuctionsActionTypes from '../actionTypes/auctions';
 
 

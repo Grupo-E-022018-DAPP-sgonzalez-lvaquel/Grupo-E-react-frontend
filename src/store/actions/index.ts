@@ -1,6 +1,6 @@
 import { Action } from 'redux';
-import IAuctionsAction from './IAuctionsAction';
+import { IAuctionsAction } from './auctions';
 
-type IAction = Action | IAuctionsAction
+type IAction = Action | IAuctionsAction;
 
 export default IAction;
