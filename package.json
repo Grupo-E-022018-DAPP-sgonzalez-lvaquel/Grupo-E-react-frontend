@@ -8,6 +8,7 @@
     "react-scripts-ts": "^4.0.8"
   },
   "scripts": {
+    "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
@@ -25,5 +26,11 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm test"
+    }
+  }
 }
