@@ -14,9 +14,9 @@ interface IAuctionsFeedProps extends React.Props<any> {
 }
 
 function AuctionsFeed(props: IAuctionsFeedProps) {
-    const auctionsGetter = props.recent ? props.getRecentAuctions : props.getAuctions;
+    const auctionsSelector = props.recent ? props.getRecentAuctions : props.getAuctions;
     return (
-        <AuctionsList auctions={auctionsGetter()} />
+        <AuctionsList auctions={auctionsSelector()} />
     );
 }
 
