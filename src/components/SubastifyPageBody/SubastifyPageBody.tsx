@@ -1,13 +1,11 @@
-import * as React from 'react'
+import * as React from 'react';
 
-import AuctionsFeed from './AuctionsFeed';
+import AuctionsFeeds from './AuctionsFeeds';
+
 
 function SubastifyPageBody(props: React.Props<any>) {
     return (
-        <React.Fragment>
-            <AuctionsFeed />
-            <AuctionsFeed recent={true} />
-        </React.Fragment>
+        <AuctionsFeeds />
     );
 }
 
