@@ -3,7 +3,7 @@ import IAuctionsAction from '../actions/IAuctionsAction';
 import AuctionsActionTypes from '../actionTypes/auctions';
 
 
-interface IAuctionsReducerState {
+export interface IAuctionsReducerState {
   allIds: number[],
   byIds: { [id: number]: IAuction },
   recentIds: number[],
