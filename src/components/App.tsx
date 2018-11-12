@@ -3,6 +3,7 @@ import 'node_modules/@fortawesome/fontawesome-free/css/all.min.css';
 import 'node_modules/bootstrap/dist/css/bootstrap.min.css';
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import { ISubastifyClient, SubastifyClient } from 'src/clients';
 import { setSubastifyClient } from 'src/store/actions/clients';
@@ -25,11 +26,13 @@ class App extends React.Component<IAppProps> {
 
     public render() {
         return (
-            <React.Fragment>
-                <SubastifyNavBar />
-                <ErrorsNotifier />
-                <SubastifyPageBody />
-            </React.Fragment>
+            <Router>
+                <React.Fragment>
+                    <SubastifyNavBar />
+                    <ErrorsNotifier />
+                    <SubastifyPageBody />
+                </React.Fragment>
+            </Router>
         );
     }
 }
