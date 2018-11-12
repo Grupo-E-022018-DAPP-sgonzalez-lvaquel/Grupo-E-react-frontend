@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 import { ISubastifyClient, SubastifyClient } from 'src/clients';
 import { setSubastifyClient } from 'src/store/actions/clients';
+import ErrorsNotifier from './ErrorsNotifier';
 import SubastifyNavBar from './SubastifyNavBar';
 import SubastifyPageBody from './SubastifyPageBody';
 
@@ -26,6 +27,7 @@ class App extends React.Component<IAppProps> {
         return (
             <React.Fragment>
                 <SubastifyNavBar />
+                <ErrorsNotifier />
                 <SubastifyPageBody />
             </React.Fragment>
         );
