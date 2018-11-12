@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import Card from 'src/components/common/Card';
+import CardBody from 'src/components/common/CardContent';
 import { IAuction } from 'src/model';
 
 
@@ -9,9 +11,11 @@ interface IAuctionsListItemProps extends React.Props<any> {
 
 function AuctionsListItem({ auction }: IAuctionsListItemProps) {
     return (
-        <div>
-            auction id: {auction.id}
-        </div>
+        <Card>
+            <CardBody>
+                auction id: {auction.id}
+            </CardBody>
+        </Card>
     );
 }
 
