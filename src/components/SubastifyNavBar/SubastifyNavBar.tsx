@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { NavLink } from 'react-router-dom';
+
+import GeneralNavOptions from './GeneralNavOptions';
+import UserNavOptions from './UserNavOptions';
 
 
 function SubastifyNavBar(props: React.Props<any>) {
@@ -9,19 +11,8 @@ function SubastifyNavBar(props: React.Props<any>) {
                 <i className="fas fa-gavel" />
                 Subastify
             </a>
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul className="navbar-nav mr-auto">
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/" exact={true}>Home</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/about/" exact={true}>About</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/users/" exact={true}>Users</NavLink>
-                    </li>
-                </ul>
-            </div>
+            <GeneralNavOptions />
+            <UserNavOptions />
         </nav>
     );
 }
