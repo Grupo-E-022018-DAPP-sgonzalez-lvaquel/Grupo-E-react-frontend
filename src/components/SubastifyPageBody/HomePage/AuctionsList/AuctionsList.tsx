@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import Container from 'src/components/common/Container';
-import Row from 'src/components/common/Row';
+import Container from 'src/components/common/style/Container';
+import Row from 'src/components/common/style/Row';
 import { IAuction } from 'src/model';
 import AuctionsListItem from './AuctionsListItem';
 
