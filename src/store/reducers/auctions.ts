@@ -25,13 +25,13 @@ export default function (state = initialState, action: any): IAuctionsReducerSta
     };
     case AuctionsActionTypes.ADD_AUCTIONS: return {
       ...state,
-      allIds: mergeValues(state.allIds, action.auctions.map(id)),
+      allIds: mergeValues([...state.allIds, ...action.auctions.map(id)]),
       byIds: mergeByIds(state, action),
     };
     case AuctionsActionTypes.ADD_RECENT_AUCTIONS: return {
       ...state,
       byIds: mergeByIds(state, action),
-      recentIds: mergeValues(state.recentIds, action.auctions.map(id))
+      recentIds: mergeValues([...state.recentIds, ...action.auctions.map(id)])
     };
     default:
       return state;
@@ -46,8 +46,8 @@ function mergeByIds(state: IAuctionsReducerState, action: IAuctionsModificationA
   return { ...state.byIds, ...action.auctions.reduce(byIds, {}) };
 }
 
-function mergeValues(...values: any[]) {
-  return Array.from(new Set(...values));
+function mergeValues(values: any[]) {
+  return Array.from(new Set(values));
 }
 
 function id(identificable: Identificable) {
