@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 
 function SubastifyNavBar(props: React.Props<any>) {
@@ -12,13 +12,13 @@ function SubastifyNavBar(props: React.Props<any>) {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
-                        <Link className="nav-link" to="/">Home</Link>
+                        <NavLink className="nav-link" to="/" exact={true}>Home</NavLink>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/about/">About</Link>
+                        <NavLink className="nav-link" to="/about/" exact={true}>About</NavLink>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/users/">Users</Link>
+                        <NavLink className="nav-link" to="/users/" exact={true}>Users</NavLink>
                     </li>
                 </ul>
             </div>
