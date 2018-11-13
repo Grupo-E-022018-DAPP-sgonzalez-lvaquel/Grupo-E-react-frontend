@@ -15,3 +15,7 @@ export function getRecentAuctions(state: IStore) {
 export function auctionsById({auctions: {byIds}}: IStore) {
     return byIds;
 }
+
+export function getAuction(state: IStore, id: number) {
+  return auctionsById(state)[id]
+}

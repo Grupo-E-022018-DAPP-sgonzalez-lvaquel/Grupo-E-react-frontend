@@ -27,7 +27,7 @@ export function createAuction(auctionOptions: IAuctionOptions) {
             );
             return auction;
         })
-        
+
     }
 }
 
@@ -81,4 +81,17 @@ export function fetchRecentAuctions() {
                 );
             });
     }
+}
+
+export function fetchAuction(id: number) {
+  return (dispatch: any, getState: () => IStore) => {
+    (getSubastifyClient(getState()) as ISubastifyClient)
+      .getAuction(id).then((auction: IAuction) => {
+        dispatch(addAuctions([auction]))
+      }).catch((err: any) => {
+          dispatch(
+              addAuctionsError(`Could not fetch auction: ${err.message}`)
+          );
+      });
+  }
 }

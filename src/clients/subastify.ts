@@ -8,6 +8,7 @@ export interface ISubastifyClient {
     createAuction(auctionOptions: IAuctionOptions): Promise<IAuction>;
     getRecentAuctions(): Promise<IAuction[]>;
     getAuctions(): Promise<IAuction[]>;
+    getAuction(id: number): Promise<IAuction>;
 }
 
 const AUCTIONS_ENDPOINT = '/auctions'
@@ -27,5 +28,9 @@ export class SubastifyClient implements ISubastifyClient {
 
     public getRecentAuctions() {
         return this.http.get(RECENT_AUCTIONS_ENDPOINT).then(response => response.data);
+    }
+
+    public getAuction(id: number) {
+      return this.http.get(`${AUCTIONS_ENDPOINT}/${id}`).then(response => response.data);
     }
 }
