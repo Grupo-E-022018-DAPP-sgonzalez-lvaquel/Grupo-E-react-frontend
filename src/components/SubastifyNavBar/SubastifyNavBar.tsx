@@ -3,7 +3,6 @@ import * as React from 'react';
 import GeneralNavOptions from './GeneralNavOptions';
 import UserNavOptions from './UserNavOptions';
 
-
 function SubastifyNavBar(props: React.Props<any>) {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
