@@ -6,11 +6,11 @@ import { getAuctionsErrors } from 'src/store/selectors';
 import Alert from './common/style/Alert';
 
 
-interface IErrorsNotifier extends React.Props<any> {
+interface IErrorsNotifierProps extends React.Props<any> {
     errors: string[]
 }
 
-function ErrorsNotifier({ errors }: IErrorsNotifier) {
+function ErrorsNotifier({ errors }: IErrorsNotifierProps) {
     return (
         <React.Fragment>
             {errors.map((error, index) =>
