@@ -1,6 +1,4 @@
 import Axios from 'axios';
-import 'node_modules/@fortawesome/fontawesome-free/css/all.min.css';
-import 'node_modules/bootstrap/dist/css/bootstrap.min.css';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
