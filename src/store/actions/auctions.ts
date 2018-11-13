@@ -1,6 +1,7 @@
 import { Action } from 'redux';
 import { ISubastifyClient } from 'src/clients/subastify';
 import { IAuction } from 'src/model';
+import IAuctionOptions from 'src/model/IAuctionOptions';
 import actionTypes from '../actionTypes';
 import { IStore } from '../reducers/rootReducer';
 import { getSubastifyClient } from '../selectors/clients';
@@ -14,6 +15,20 @@ export interface IAuctionsErrorsAction extends Action {
 
 export interface IAuctionsModificationAction extends Action {
     auctions: IAuction[],
+}
+
+export function createAuction(auctionOptions: IAuctionOptions) {
+    return (dispatch: any, getState: () => IStore) => {
+        return (getSubastifyClient(getState()) as ISubastifyClient)
+        .createAuction(auctionOptions)
+        .then((auction: IAuction) => {
+            dispatch(
+                addAuctions([auction])
+            );
+            return auction;
+        })
+        
+    }
 }
 
 export function auctionAction(type: string, auctions: IAuction[]): IAuctionsAction {
