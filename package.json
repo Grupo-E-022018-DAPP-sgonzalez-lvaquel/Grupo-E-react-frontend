@@ -19,6 +19,7 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
+    "development": "npm start",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
