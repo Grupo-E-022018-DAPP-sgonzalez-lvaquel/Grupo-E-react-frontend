@@ -1,3 +1,3 @@
-import UserNavOptions from './UserNavOptions';
+import UserNavOptions from './UserNavOptions/UserNavOptions';
 
 export default UserNavOptions;
