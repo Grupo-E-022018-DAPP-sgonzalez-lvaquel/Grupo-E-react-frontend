@@ -3,8 +3,8 @@ import { authConfig } from 'src/config';
 
 export class Auth {
     public auth0 = new WebAuth({
-        clientID: authConfig.clientId,
-        domain: authConfig.domain,
+        clientID: authConfig.clientId as string,
+        domain: authConfig.domain as string,
         redirectUri: authConfig.callbackUrl,
         responseType: 'token id_token',
         scope: 'openid'
