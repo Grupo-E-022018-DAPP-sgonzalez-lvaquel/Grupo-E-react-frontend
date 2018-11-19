@@ -7,6 +7,7 @@ import Auth from 'src/clients/Auth';
 import { setAuthService, setSubastifyClient } from 'src/store/actions';
 import AuthCallback from './AuthCallback';
 import ErrorsNotifier from './ErrorsNotifier';
+import I18n from './I18n';
 import SubastifyNavBar from './SubastifyNavBar';
 import SubastifyPageBody from './SubastifyPageBody';
 
@@ -32,6 +33,7 @@ class App extends React.Component<IAppProps> {
 
     public render() {
         return (
+            <I18n>
             <Router>
                 <React.Fragment>
                     <Route path="/auth" component={AuthCallback} />
@@ -40,6 +42,7 @@ class App extends React.Component<IAppProps> {
                     <SubastifyPageBody />
                 </React.Fragment>
             </Router>
+            </I18n>
         );
     }
 }
