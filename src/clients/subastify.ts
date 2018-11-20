@@ -41,10 +41,10 @@ export class SubastifyClient implements ISubastifyClient {
     }
 
     private get options(): AxiosRequestConfig {
-        const options = {headers:{}}
+        const options: AxiosRequestConfig = {headers:{}}
         
         if(this.accessToken){
-            options.headers = `Bearer ${this.accessToken}` 
+            options.headers.Authorization = `Bearer ${this.accessToken}` 
         }
 
         return options;
