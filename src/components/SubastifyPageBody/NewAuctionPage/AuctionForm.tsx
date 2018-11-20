@@ -26,7 +26,7 @@ class AuctionForm extends React.Component<IAuctionFormProps, IAuctionFormState> 
             done: false,
             dueDate: new Date(Date.now()),
             imageUrl: '',
-            price: 0,
+            initialPrice: '0',
             title: '',
         };
 
@@ -37,12 +37,12 @@ class AuctionForm extends React.Component<IAuctionFormProps, IAuctionFormState> 
     public handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         event.stopPropagation();
-        const { description, dueDate, imageUrl, price, title } = this.state;
+        const { description, dueDate, imageUrl, initialPrice, title } = this.state;
         this.props.createAuction({
             description,
             dueDate,
             imageUrl,
-            price,
+            initialPrice,
             title
         }).then((auction: IAuction) => this.setState({ done: true, id: auction.id }));
     }
@@ -69,8 +69,8 @@ class AuctionForm extends React.Component<IAuctionFormProps, IAuctionFormState> 
                         <input onChange={this.handleChange} type="url" className="form-control" id="imageUrl" placeholder="Enter image URL" />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="price">Auction Initial Price</label>
-                        <input onChange={this.handleChange} type="number" className="form-control" id="price" placeholder="Enter a price" />
+                        <label htmlFor="initialPrice">Auction Initial Price</label>
+                        <input onChange={this.handleChange} type="number" className="form-control" id="initialPrice" placeholder="Enter a initialPrice" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="dueDate">Auction Due Date</label>
