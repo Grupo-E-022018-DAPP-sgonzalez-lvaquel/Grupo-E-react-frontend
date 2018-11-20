@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Translate } from 'react-localize-redux';
 import { connect } from 'react-redux';
 
 import Auth from 'src/clients/Auth';
@@ -15,7 +16,7 @@ function UnautheticatedUserNavOptions({ auth }: IUnautheticatedUserNavOptionsPro
         <ul className="navbar-nav mr-auto float-right">
             <li className="nav-item">
                 <a className="nav-link" onClick={auth.login} href='#'>
-                    Log In
+                    <Translate id="nav.user.login" />
                 </a>
             </li>
         </ul>

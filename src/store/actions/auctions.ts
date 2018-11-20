@@ -1,10 +1,10 @@
 import { Action } from 'redux';
 import { ISubastifyClient } from 'src/clients/subastify';
-import { IAuction } from 'src/model';
+import { IAuction, INewAuction } from 'src/model';
 import IAuctionOptions from 'src/model/IAuctionOptions';
 import actionTypes from '../actionTypes';
 import { IStore } from '../reducers/rootReducer';
-import { getSubastifyClient } from '../selectors/clients';
+import { getCurrentUserId, getSubastifyClient } from '../selectors';
 
 
 export type IAuctionsAction = IAuctionsErrorsAction | IAuctionsModificationAction
@@ -17,10 +17,26 @@ export interface IAuctionsModificationAction extends Action {
     auctions: IAuction[],
 }
 
-export function createAuction(auctionOptions: IAuctionOptions) {
+export function createAuction({description, dueDate, imageUrl, initialPrice, title}: IAuctionOptions) {
     return (dispatch: any, getState: () => IStore) => {
-        return (getSubastifyClient(getState()) as ISubastifyClient)
-        .createAuction(auctionOptions)
+        const state = getState();
+        const ownerId = getCurrentUserId(state)
+        
+        if(!ownerId){
+            throw new Error('can not create auctions: Not logged in')
+        }
+
+        const newAuction: INewAuction = {
+            description,
+            endDate: dueDate.toISOString(),
+            imageUrl,
+            initialPrice,
+            ownerId,
+            title,
+        };
+
+        return (getSubastifyClient(state) as ISubastifyClient)
+        .createAuction(newAuction)
         .then((auction: IAuction) => {
             dispatch(
                 addAuctions([auction])
