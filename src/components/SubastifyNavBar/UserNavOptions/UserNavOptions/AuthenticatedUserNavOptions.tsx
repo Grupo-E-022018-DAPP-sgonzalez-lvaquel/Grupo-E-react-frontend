@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Translate } from 'react-localize-redux';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
@@ -16,18 +17,18 @@ function AuthenticatedUserNavOptions({ auth }: IAuthenticatedUserNavOptionsProps
         <ul className="navbar-nav mr-auto float-right">
             <li className="nav-item">
                 <NavLink className="nav-link" to="/auctions/new" exact={true}>
-                    Publish
+                    <Translate id="nav.user.publish"/>
                 </NavLink>
             </li>
             <li className="nav-item">
                 <NavLink className="nav-link" to="/me" exact={true}>
-                    Me
+                    <Translate id="nav.user.profile" />
                     <i className="fas fa-user-circle" />
                 </NavLink>
             </li>
             <li className="nav-item">
                 <a className="nav-link" onClick={auth.logout} href='/'>
-                    Log Out
+                    <Translate id="nav.user.logout" />
                 </a>
             </li>
         </ul>);
