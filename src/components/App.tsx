@@ -10,6 +10,7 @@ import ErrorsNotifier from './ErrorsNotifier';
 import I18n from './I18n';
 import SubastifyNavBar from './SubastifyNavBar';
 import SubastifyPageBody from './SubastifyPageBody';
+import UserManager from './UserManager';
 
 
 interface IAppProps extends React.Props<any> {
@@ -36,6 +37,7 @@ class App extends React.Component<IAppProps> {
             <I18n>
             <Router>
                 <React.Fragment>
+                    <UserManager />
                     <Route path="/auth" component={AuthCallback} />
                     <SubastifyNavBar />
                     <ErrorsNotifier />

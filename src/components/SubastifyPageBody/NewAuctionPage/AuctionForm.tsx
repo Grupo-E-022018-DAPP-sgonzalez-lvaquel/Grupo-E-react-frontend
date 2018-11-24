@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon';
 import * as React from 'react';
+import { Translate } from 'react-localize-redux';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 
@@ -57,24 +58,54 @@ class AuctionForm extends React.Component<IAuctionFormProps, IAuctionFormState> 
                 {this.state.done && <Redirect to={`/auctions/${this.state.id}`} />}
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="title">Auction Title</label>
-                        <input onChange={this.handleChange} type="text" className="form-control" id="title" aria-describedby="titleHelp" placeholder="Enter title" />
+                        <label htmlFor="title">
+                            <Translate id='auction.form.title.title' />
+                        </label>
+                        <input onChange={this.handleChange}
+                            type="text"
+                            className="form-control"
+                            id="title"
+                            aria-describedby="titleHelp"
+                            />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="description">Product description</label>
-                        <textarea onChange={this.handleChange} className="form-control" id="description" placeholder="Product description..." />
+                        <label htmlFor="description">
+                            <Translate id='auction.form.description.title' />
+                        </label>
+                        <textarea onChange={this.handleChange}
+                            className="form-control"
+                            id="description"
+                            />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="imageUrl">Product Image</label>
-                        <input onChange={this.handleChange} type="url" className="form-control" id="imageUrl" placeholder="Enter image URL" />
+                        <label htmlFor="imageUrl">
+                            <Translate id='auction.form.imageUrl.title' />
+                        </label>
+                        <input onChange={this.handleChange}
+                            type="url"
+                            className="form-control"
+                            id="imageUrl"
+                            />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="initialPrice">Auction Initial Price</label>
-                        <input onChange={this.handleChange} type="number" className="form-control" id="initialPrice" placeholder="Enter a initialPrice" />
+                        <label htmlFor="initialPrice">
+                            <Translate id='auction.form.initialPrice.title' />
+                        </label>
+                        <input onChange={this.handleChange}
+                            type="number"
+                            className="form-control"
+                            id="initialPrice"
+                            />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="dueDate">Auction Due Date</label>
-                        <input onChange={this.handleChange} type="datetime-local" className="form-control" id="dueDate" placeholder="Enter an expiration date" />
+                        <label htmlFor="dueDate">
+                            <Translate id='auction.form.dueDate.title' />
+                        </label>
+                        <input onChange={this.handleChange}
+                            type="datetime-local"
+                            className="form-control"
+                            id="dueDate"
+                            />
                     </div>
                     <button type="submit" className="btn btn-primary">Publish</button>
                 </form>
