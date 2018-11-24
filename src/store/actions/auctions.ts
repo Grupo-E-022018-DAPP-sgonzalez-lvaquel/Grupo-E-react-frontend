@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 import { ISubastifyClient } from 'src/clients/subastify';
-import { IAuction, INewAuction } from 'src/model';
+import { IAuction } from 'src/model';
 import IAuctionOptions from 'src/model/IAuctionOptions';
 import actionTypes from '../actionTypes';
 import { IStore } from '../reducers/rootReducer';
@@ -26,12 +26,12 @@ export function createAuction({description, dueDate, imageUrl, initialPrice, tit
             throw new Error('can not create auctions: Not logged in')
         }
 
-        const newAuction: INewAuction = {
+        const newAuction: any = {
             description,
             endDate: dueDate.toISOString(),
             imageUrl,
             initialPrice,
-            ownerId,
+            owner: {id: ownerId},
             title,
         };
 
