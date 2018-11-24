@@ -1,5 +1,5 @@
 export interface INewAuction {
-    ownerId: string;
+    ownerId: number;
     endDate: string;
     title: string;
     description: string;

@@ -1,3 +1,5 @@
+import * as jwt from 'jsonwebtoken';
+
 import { Auth0DecodedHash, WebAuth } from 'auth0-js';
 import { authConfig } from 'src/config';
 
@@ -26,10 +28,12 @@ export class Auth {
         this.auth0.authorize();
     }
 
-    public handleAuthentication() {
+    public handleAuthentication(callback?: (authResult: any) => any) {
         this.auth0.parseHash((err, authResult) => {
             if (authResult && authResult.accessToken && authResult.idToken) {
                 this.setSession(authResult);
+                // tslint:disable-next-line:no-unused-expression
+                callback && callback(authResult);
             } else if (err) {
                 throw new Error(`Error: ${err.error}. Check the console for further details.`);
             }
@@ -68,6 +72,16 @@ export class Auth {
             const accessToken = this.storage.getItem(this.ACCESS_TOKEN)
             if(!accessToken) {return undefined;}
             return accessToken;
+        }
+        return undefined;
+    }
+
+    get kid(): string | undefined {
+        if(this.isAuthenticated()){
+            const idToken = this.storage.getItem(this.ID_TOKEN)
+            if(!idToken) {return undefined;}
+            const decoded: any = jwt.decode(idToken, {complete: true})
+            return decoded && decoded.header.kid;
         }
         return undefined;
     }

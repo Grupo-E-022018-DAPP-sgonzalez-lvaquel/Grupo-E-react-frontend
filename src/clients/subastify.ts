@@ -1,9 +1,11 @@
 import { AxiosInstance, AxiosRequestConfig } from 'axios';
 
 import IAuction, { INewAuction } from 'src/model/IAuction';
+import IUser from 'src/model/IUser';
 
 
 export interface ISubastifyClient {
+    getUserByKid(kid: string): Promise<IUser>;
     createAuction(auctionOptions: INewAuction): Promise<IAuction>;
     getRecentAuctions(): Promise<IAuction[]>;
     getAuctions(): Promise<IAuction[]>;
@@ -13,6 +15,7 @@ export interface ISubastifyClient {
 
 const AUCTIONS_ENDPOINT = '/auctions'
 const RECENT_AUCTIONS_ENDPOINT = '/auctions/recent'
+const USERS_ENDPOINT = '/users'
 
 export class SubastifyClient implements ISubastifyClient {
 
@@ -48,5 +51,9 @@ export class SubastifyClient implements ISubastifyClient {
         }
 
         return options;
+    }
+
+    public getUserByKid(kid: string): Promise<IUser> {
+        return this.http.patch(`${USERS_ENDPOINT}`, {kid}).then(response => response.data);
     }
 }

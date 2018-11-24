@@ -1,22 +1,21 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import Auth from 'src/clients/Auth';
 import LanguageSelect from 'src/components/common/LanguageSelect';
 import { IStore } from 'src/store/reducers/rootReducer';
-import { getAuthService } from 'src/store/selectors';
+import { isAuthenticated } from 'src/store/selectors';
 import AuthenticatedUserNavOptions from './AuthenticatedUserNavOptions';
 import UnautheticatedUserNavOptions from './UnautheticatedUserNavOptions';
 
 
 interface IUserNavOptionsProps {
-    auth: Auth;
+    isAuthenticated: boolean;
 }
 
-function UserNavOptions({ auth }: IUserNavOptionsProps) {
+function UserNavOptions(props: IUserNavOptionsProps) {
     return (
         <React.Fragment>
-            {auth.isAuthenticated() ? <AuthenticatedUserNavOptions /> : <UnautheticatedUserNavOptions />}
+            {props.isAuthenticated ? <AuthenticatedUserNavOptions /> : <UnautheticatedUserNavOptions />}
             <LanguageSelect />
         </React.Fragment>
     );
@@ -24,7 +23,7 @@ function UserNavOptions({ auth }: IUserNavOptionsProps) {
 
 function mapStateToProps(state: IStore) {
     return {
-        auth: getAuthService(state),
+        isAuthenticated: isAuthenticated(state),
     }
 }
 
