@@ -1,4 +1,6 @@
+import { localizeReducer } from 'react-localize-redux';
 import { combineReducers } from 'redux';
+
 import auctions, { IAuctionsReducerState } from './auctions';
 import auth, { IAuthReducerState } from './auth';
 import clients, { IClientsReducerState } from './clients';
@@ -9,8 +11,9 @@ export interface IStore {
     clients: IClientsReducerState,
 }
 
-export default combineReducers({ 
+export default combineReducers({
     auctions,
-    auth, 
-    clients, 
+    auth,
+    clients,
+    localize: localizeReducer,
 });
