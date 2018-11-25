@@ -1,9 +1,11 @@
 import * as React from 'react'
+import { Translate } from 'react-localize-redux';
 import { connect } from 'react-redux';
 
 import { fetchAuctions, fetchRecentAuctions } from 'src/store/actions/auctions';
 import AuctionsFeed from './AuctionsFeed';
 
+import './AuctionsFeeds.css';
 
 interface IAuctionFeedsProps extends React.Props<any> {
     fetchAuctions: () => void;
@@ -20,8 +22,18 @@ class AuctionFeeds extends React.Component<IAuctionFeedsProps> {
     public render() {
         return (
             <React.Fragment>
-                <AuctionsFeed />
-                <AuctionsFeed recent={true} />
+                <div className="feed-container" >
+                    <div className="feed-title row">
+                        <Translate id="auction.feed.normal.title" />
+                    </div>
+                    <AuctionsFeed />
+                </div>
+                <div className="feed-container" >
+                    <div className="feed-title row">
+                        <Translate id="auction.feed.recent.title" />
+                    </div>
+                    <AuctionsFeed recent={true} />
+                </div>
             </React.Fragment>
         );
     }

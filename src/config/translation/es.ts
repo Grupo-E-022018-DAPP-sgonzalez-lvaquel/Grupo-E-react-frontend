@@ -1,5 +1,9 @@
 export default {
   auction: {
+    feed: {
+      normal: {title: "Subastas"},
+      recent: {title: "Subastas Recientes"}
+    },
     form: {
       description: {
         title: 'Descripcion del Producto'
