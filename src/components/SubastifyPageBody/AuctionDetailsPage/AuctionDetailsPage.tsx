@@ -10,7 +10,7 @@ import AuctionBettorsAmount from './AuctionBettorsAmount';
 import Row from 'src/components/common/style/Row';
 
 import { IAuction } from 'src/model';
-import { fetchAuction as fetchAuctionAction} from 'src/store/actions/auctions';
+import { fetchAuction as fetchAuctionAction, fetchAuctionBets as fetchAuctionBetsAction} from 'src/store/actions/auctions';
 import { IStore } from 'src/store/reducers/rootReducer';
 import { getAuction as getAuctionSelector } from 'src/store/selectors/auctions';
 
@@ -18,10 +18,21 @@ interface IAuctionsDetailsPageProps extends React.Props<any> {
   getAuction: (id: number) => IAuction;
   match: any;
   fetchAuction: (id: number) => void;
+  fetchAuctionBets: (id: number) => void;
 }
+class AuctionDetailsPage extends React.Component<IAuctionsDetailsPageProps> {
 
-function AuctionDetailsPage({match, getAuction, fetchAuction}: IAuctionsDetailsPageProps) {
-  const auction = getAuction(match.params.id);
+  public componentDidMount() {
+    this.props.fetchAuctionBets(this.props.match.params.id)
+    this.props.fetchAuction(this.props.match.params.id)
+  }
+
+  public render() {
+    const { match, getAuction } = this.props;
+    const auction = getAuction(match.params.id);
+    if(!auction) {
+      return <h1>Cargando...</h1>
+    }
     return (
       <div className="row">
         <Row>
@@ -75,6 +86,7 @@ function AuctionDetailsPage({match, getAuction, fetchAuction}: IAuctionsDetailsP
       </div>
     );
   }
+}
 
 function mapStateToProps(state: IStore){
   return {
@@ -82,4 +94,4 @@ function mapStateToProps(state: IStore){
   }
 }
 
-export default connect(mapStateToProps, {fetchAuction: fetchAuctionAction})(AuctionDetailsPage); // conecto con el store y hace que observe un evento
+export default connect(mapStateToProps, {fetchAuction: fetchAuctionAction, fetchAuctionBets: fetchAuctionBetsAction})(AuctionDetailsPage); // conecto con el store y hace que observe un evento
