@@ -5,7 +5,7 @@ import "./AuctionDetailsPage.css";
 
 import { Button } from 'src/components/common';
 
-import { AuctionBettorsAmount } from './AuctionBettorsAmount';
+import AuctionBettorsAmount from './AuctionBettorsAmount';
 
 import Row from 'src/components/common/style/Row';
 
