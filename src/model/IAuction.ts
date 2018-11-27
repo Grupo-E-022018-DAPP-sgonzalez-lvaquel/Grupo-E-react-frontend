@@ -10,6 +10,7 @@ export interface INewAuction {
 interface IAuction extends INewAuction {
     id: number;
     state: string;
+    bets: [number];
 }
 
 export default IAuction;
