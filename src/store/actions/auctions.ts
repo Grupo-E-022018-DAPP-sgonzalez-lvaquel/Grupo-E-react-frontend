@@ -1,10 +1,12 @@
 import { Action } from 'redux';
 import { ISubastifyClient } from 'src/clients/subastify';
-import { IAuction } from 'src/model';
+import { IAuction, IBet } from 'src/model';
 import IAuctionOptions from 'src/model/IAuctionOptions';
 import actionTypes from '../actionTypes';
 import { IStore } from '../reducers/rootReducer';
 import { getCurrentUserId, getSubastifyClient } from '../selectors';
+
+import { addBets, addBetsError } from '../actions/bets'
 
 
 export type IAuctionsAction = IAuctionsErrorsAction | IAuctionsModificationAction
@@ -21,7 +23,7 @@ export function createAuction({description, dueDate, imageUrl, initialPrice, tit
     return (dispatch: any, getState: () => IStore) => {
         const state = getState();
         const ownerId = getCurrentUserId(state)
-        
+
         if(!ownerId){
             throw new Error('can not create auctions: Not logged in')
         }
@@ -109,5 +111,18 @@ export function fetchAuction(id: number) {
               addAuctionsError(`Could not fetch auction: ${err.message}`)
           );
       });
+  }
+}
+
+export function fetchAuctionBets(id: number) {
+  return (dispatch: any, getState: () => IStore) => {
+    (getSubastifyClient(getState()) as ISubastifyClient)
+      .getAuctionBets(id).then((bets: [IBet]) => {
+        dispatch(addBets(bets))
+      }).catch((err: any) => {
+        dispatch(
+          addBetsError(`Could not fetch bets: ${err.message}`)
+        )
+      })
   }
 }
