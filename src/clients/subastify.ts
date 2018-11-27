@@ -1,6 +1,9 @@
 import { AxiosInstance, AxiosRequestConfig } from 'axios';
 
 import IAuction, { INewAuction } from 'src/model/IAuction';
+
+import { IBet } from 'src/model';
+
 import IUser from 'src/model/IUser';
 
 
@@ -10,12 +13,15 @@ export interface ISubastifyClient {
     getRecentAuctions(): Promise<IAuction[]>;
     getAuctions(): Promise<IAuction[]>;
     getAuction(id: number): Promise<IAuction>;
-    setAccessToken(token: string | undefined): void
+    setAccessToken(token: string | undefined): void;
+    getAuctionBets(id: number): Promise<IBet[]>;
+
 }
 
 const AUCTIONS_ENDPOINT = '/auctions'
 const RECENT_AUCTIONS_ENDPOINT = '/auctions/recent'
 const USERS_ENDPOINT = '/users'
+const BETS_ENDPOINT = '/bets'
 
 export class SubastifyClient implements ISubastifyClient {
 
@@ -45,9 +51,9 @@ export class SubastifyClient implements ISubastifyClient {
 
     private get options(): AxiosRequestConfig {
         const options: AxiosRequestConfig = {headers:{}}
-        
+
         if(this.accessToken){
-            options.headers.Authorization = `Bearer ${this.accessToken}` 
+            options.headers.Authorization = `Bearer ${this.accessToken}`
         }
 
         return options;
@@ -55,5 +61,9 @@ export class SubastifyClient implements ISubastifyClient {
 
     public getUserByKid(kid: string): Promise<IUser> {
         return this.http.patch(`${USERS_ENDPOINT}`, {kid}).then(response => response.data);
+    }
+
+    public getAuctionBets(id: number): Promise<IBet[]> {
+      return this.http.get(`${AUCTIONS_ENDPOINT}/${id}${BETS_ENDPOINT}`, this.options).then(response => response.data);
     }
 }
