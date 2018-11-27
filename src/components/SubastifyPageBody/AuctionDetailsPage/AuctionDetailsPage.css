@@ -1,0 +1,40 @@
+.price-info {
+  padding-left: 50px;
+  /* padding-right: 0px; */
+  width: 50%;
+}
+
+.price-info-item {
+  position: relative;
+  flex-direction: row;
+}
+
+.price-info div {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.price-info div h5 {
+  padding-bottom: 7px;
+}
+
+.time-info {
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 15px 0px 0px 20px;
+}
+
+.auction-description {
+  flex-wrap: wrap;
+}
+
+.auction-info {
+  position: relative;
+  width: 100%;
+  padding-right: 50px;
+}
+
+.row {
+  margin: 0px 0px 0px 0px;
+  width: 100%;
+}
