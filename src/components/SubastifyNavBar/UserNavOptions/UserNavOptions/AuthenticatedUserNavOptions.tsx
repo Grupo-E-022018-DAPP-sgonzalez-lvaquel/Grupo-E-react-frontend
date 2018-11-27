@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import Auth from 'src/clients/Auth';
+import LanguageSelect from 'src/components/common/LanguageSelect';
 import { IStore } from 'src/store/reducers/rootReducer';
 import { getAuthService } from 'src/store/selectors';
 
@@ -14,10 +15,10 @@ interface IAuthenticatedUserNavOptionsProps extends React.Props<any> {
 
 function AuthenticatedUserNavOptions({ auth }: IAuthenticatedUserNavOptionsProps) {
     return (
-        <ul className="navbar-nav mr-auto float-right">
+        <ul className="navbar-nav ml-auto">
             <li className="nav-item">
                 <NavLink className="nav-link" to="/auctions/new" exact={true}>
-                    <Translate id="nav.user.publish"/>
+                    <Translate id="nav.user.publish" />
                 </NavLink>
             </li>
             <li className="nav-item">
@@ -30,6 +31,9 @@ function AuthenticatedUserNavOptions({ auth }: IAuthenticatedUserNavOptionsProps
                 <a className="nav-link" onClick={auth.logout} href='/'>
                     <Translate id="nav.user.logout" />
                 </a>
+            </li>
+            <li className="nav-item">
+                <LanguageSelect />
             </li>
         </ul>);
 }

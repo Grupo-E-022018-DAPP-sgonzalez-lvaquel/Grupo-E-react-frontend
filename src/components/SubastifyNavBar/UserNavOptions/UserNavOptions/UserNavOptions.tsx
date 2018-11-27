@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import LanguageSelect from 'src/components/common/LanguageSelect';
 import { IStore } from 'src/store/reducers/rootReducer';
 import { isAuthenticated } from 'src/store/selectors';
 import AuthenticatedUserNavOptions from './AuthenticatedUserNavOptions';
@@ -13,12 +12,11 @@ interface IUserNavOptionsProps {
 }
 
 function UserNavOptions(props: IUserNavOptionsProps) {
-    return (
-        <React.Fragment>
-            {props.isAuthenticated ? <AuthenticatedUserNavOptions /> : <UnautheticatedUserNavOptions />}
-            <LanguageSelect />
-        </React.Fragment>
-    );
+    if(props.isAuthenticated){
+        return <AuthenticatedUserNavOptions />;
+    } else {
+        return <UnautheticatedUserNavOptions />;
+    }
 }
 
 function mapStateToProps(state: IStore) {
