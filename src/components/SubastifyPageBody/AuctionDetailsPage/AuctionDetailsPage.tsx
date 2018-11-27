@@ -5,6 +5,8 @@ import "./AuctionDetailsPage.css";
 
 import { Button } from 'src/components/common';
 
+import { AuctionBettorsAmount } from './AuctionBettorsAmount';
+
 import Row from 'src/components/common/style/Row';
 
 import { IAuction } from 'src/model';
@@ -56,10 +58,7 @@ function AuctionDetailsPage({match, getAuction, fetchAuction}: IAuctionsDetailsP
                 </Button>
               </div>
               <hr/>
-              <div className="price-info-item">
-                <h3>Cantidad de postores</h3>
-                <h5>postores en la subasta</h5>
-              </div>
+              <AuctionBettorsAmount auctionId={auction.id}/>
               <hr/>
               <div>
                 <h3>Avance de la subasta</h3>
