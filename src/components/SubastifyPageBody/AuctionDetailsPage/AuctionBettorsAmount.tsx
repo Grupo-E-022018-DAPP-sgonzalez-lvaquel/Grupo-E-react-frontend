@@ -15,8 +15,9 @@ export function AuctionBettorsAmount({auctionId, getAuctionBettorsAmount}: IAuct
     return (
       <div className="price-info-item">
         <h3>Cantidad de postores</h3>
-        <h5>postores en la subasta
+        <h5>
           {
+            "postores en la subasta: " + 
             getAuctionBettorsAmount(auctionId)
           }
         </h5>

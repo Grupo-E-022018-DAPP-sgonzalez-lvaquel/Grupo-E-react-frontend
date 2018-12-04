@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import "./AuctionDetailsPage.css";
 
-import { Button } from 'src/components/common';
+import MakeBetButton from './MakeBetButton';
 
 import AuctionBettorsAmount from './AuctionBettorsAmount';
 
@@ -20,6 +20,7 @@ interface IAuctionsDetailsPageProps extends React.Props<any> {
   fetchAuction: (id: number) => void;
   fetchAuctionBets: (id: number) => void;
 }
+
 class AuctionDetailsPage extends React.Component<IAuctionsDetailsPageProps> {
 
   public componentDidMount() {
@@ -33,6 +34,7 @@ class AuctionDetailsPage extends React.Component<IAuctionsDetailsPageProps> {
     if(!auction) {
       return <h1>Cargando...</h1>
     }
+
     return (
       <div className="row">
         <Row>
@@ -64,9 +66,7 @@ class AuctionDetailsPage extends React.Component<IAuctionsDetailsPageProps> {
                 <span>Tramo n°16
                   <h3>$299</h3>
                 </span>
-                <Button variant='primary'>
-                  <label>Realizar Oferta</label>
-                </Button>
+                <MakeBetButton auction={auction}/>
               </div>
               <hr/>
               <AuctionBettorsAmount auctionId={auction.id}/>
