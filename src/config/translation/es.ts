@@ -1,5 +1,14 @@
 export default {
   auction: {
+    details: {
+      makeBet: {
+        modal: {
+          accept: "Apostar",
+          cancel: "Cancelar",
+          title: "Realizar Apuesta",
+        },
+      },
+    },
     feed: {
       normal: {title: "Subastas"},
       recent: {title: "Subastas Recientes"}
